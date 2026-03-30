@@ -12,9 +12,11 @@ def matrix_sensor() -> None:
             print(f"Virtual Environment: {os.path.basename(sys.prefix)}")
             print(f"Environment Path: {sys.prefix}")
             print()
-            print(f"SUCCESS: You're in an isolated environment!\n"
-                f"Safe to install packages without affecting\n"
-                f"the global system.")
+            print(
+                "SUCCESS: You're in an isolated environment!\n"
+                "Safe to install packages without affecting\n"
+                "the global system."
+            )
             print()
             print("Package installation path:")
             print(site.getsitepackages()[0])
@@ -35,6 +37,7 @@ def matrix_sensor() -> None:
             print("\nThen run this program again.")
     except Exception as e:
         print(e)
+
 
 if __name__ == "__main__":
     matrix_sensor()

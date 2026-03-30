@@ -1,29 +1,27 @@
 import sys
 import importlib
 
-def check_and_load_modules() -> bool:
 
+def check_and_load_modules() -> bool:
     required_modules = {
         "pandas": "Data manipulation ready",
         "numpy": "Numerical computations ready",
         "matplotlib": "Visualization ready",
-        "requests": "Network access ready"
+        "requests": "Network access ready",
     }
     all_good = True
     print("Checking dependencies:")
     for mod_name, description in required_modules.items():
         try:
             imported_mod = importlib.import_module(mod_name)
-
             version = imported_mod.__version__
-
             print(f"[OK] {mod_name} ({version}) - {description}")
-
         except ImportError:
             print(f"[ERROR] Missing {mod_name}! Run: pip install {mod_name}")
             all_good = False
 
     return all_good
+
 
 def analyze_matrix_data() -> None:
     try:
@@ -33,29 +31,39 @@ def analyze_matrix_data() -> None:
 
         print("\nAnalyzing Matrix data...")
         print("Processing 1000 data points...")
+
         # 1. NUMPY: Generate 1000 random "anomaly scores" between 0 and 100
         anomaly_scores = np.random.rand(1000) * 100
+
         # 2. PANDAS: Organize the raw numbers into a structured DataFrame
         df = pd.DataFrame({
             "Data_Index": range(1000),
             "Anomaly_score": anomaly_scores
         })
+
         print("Generating visualization...\n")
-        # 3. MATPLOTLIB: Create a figure (10x6 inches)
-        bg_color = '#0d1117'
-        grid_color = '#30363d'
-        text_color = '#c9d1d9'
-        data_color = '#00f0ff'
 
         # 3. MATPLOTLIB: Create a figure (10x6 inches)
+        bg_color = "#0d1117"
+        grid_color = "#30363d"
+        text_color = "#c9d1d9"
+        data_color = "#00f0ff"
+
         plt.figure(figsize=(10, 6))
 
         # Create the scatter plot using Electric Cyan.
-        # Slightly increased 's' (size) and 'alpha' to make the neon glow stand out
-        plt.scatter(df['Data_Index'], df['Anomaly_score'], c=data_color, alpha=0.7, s=20)
+        # Slightly increased 's' and 'alpha' to make the neon glow stand out
+        plt.scatter(
+            df["Data_Index"], df["Anomaly_score"],
+            c=data_color, alpha=0.7, s=20
+        )
 
         # Add labels with the softer white, and make the title bold
-        plt.title("Matrix Sector Anomaly Detection", color=text_color, fontweight='bold')
+        plt.title(
+            "Matrix Sector Anomaly Detection",
+            color=text_color,
+            fontweight="bold"
+        )
         plt.xlabel("Data Point Index", color=text_color)
         plt.ylabel("Signal Anomaly Score", color=text_color)
 
@@ -64,9 +72,9 @@ def analyze_matrix_data() -> None:
         plt.gcf().patch.set_facecolor(bg_color)
 
         # A sleek, dashed grid that doesn't overpower the data
-        plt.grid(True, color=grid_color, linestyle='--', alpha=0.7)
+        plt.grid(True, color=grid_color, linestyle="--", alpha=0.7)
 
-        # PRO-TIP: Change the axis borders (spines) and tick marks to match the theme
+        # PRO-TIP: Change axis borders (spines) and tick marks to match theme
         for spine in plt.gca().spines.values():
             spine.set_color(grid_color)
         plt.tick_params(colors=text_color)
@@ -82,6 +90,7 @@ def analyze_matrix_data() -> None:
 
     except Exception as e:
         print(f"[ERROR] The Matrix analysis failed: {e}")
+
 
 if __name__ == "__main__":
     print("LOADING STATUS: Loading programs...\n")

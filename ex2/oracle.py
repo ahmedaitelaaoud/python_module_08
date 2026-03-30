@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 
+
 def oracle() -> None:
     print("ORACLE STATUS: Reading the Matrix...")
     print()
@@ -12,7 +13,7 @@ def oracle() -> None:
         "DATABASE_URL": "Database",
         "API_KEY": "API Access",
         "LOG_LEVEL": "Log Level",
-        "ZION_ENDPOINT": "Zion Network"
+        "ZION_ENDPOINT": "Zion Network",
     }
 
     print("Configuration loaded:")
