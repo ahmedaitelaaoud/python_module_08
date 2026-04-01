@@ -5,6 +5,9 @@ import site
 
 def matrix_sensor() -> None:
     try:
+        # sys.base_prefix points to the global Python installation.
+        # sys.prefix points to the currently active Python environment.
+        # If they are different, it means we are running inside a virtual environment.
         is_in_venv = sys.prefix != sys.base_prefix
         if is_in_venv:
             print("MATRIX STATUS: Welcome to the construct\n")

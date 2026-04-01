@@ -1,8 +1,11 @@
 import sys
 import importlib
 
-
 def check_and_load_modules() -> bool:
+    """
+    Checks if all required external libraries are installed in the current
+    Python environment before attempting to run the main program.
+    """
     required_modules = {
         "pandas": "Data manipulation ready",
         "numpy": "Numerical computations ready",
@@ -11,12 +14,16 @@ def check_and_load_modules() -> bool:
     }
     all_good = True
     print("Checking dependencies:")
+
     for mod_name, description in required_modules.items():
         try:
+            # Dynamically attempt to import the module by its string name
             imported_mod = importlib.import_module(mod_name)
+            # Retrieve the installed version of the module
             version = imported_mod.__version__
             print(f"[OK] {mod_name} ({version}) - {description}")
         except ImportError:
+            # If the import fails, the dependency is missing
             print(f"[ERROR] Missing {mod_name}! Run: pip install {mod_name}")
             all_good = False
 
@@ -24,7 +31,12 @@ def check_and_load_modules() -> bool:
 
 
 def analyze_matrix_data() -> None:
+    """
+    Simulates data processing by generating random matrix anomaly scores,
+    structuring them, and rendering a stylized 2D visualization.
+    """
     try:
+        # Local imports ensure these are only loaded if the check passes
         import pandas as pd
         import numpy as np
         import matplotlib.pyplot as plt
